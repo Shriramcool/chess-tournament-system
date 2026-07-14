@@ -1,42 +1,312 @@
-# sv
+# Chess Tournament Management System
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A web-based Chess Tournament Management System built using **SvelteKit**, **PostgreSQL**, and **Drizzle ORM**.
 
-## Creating a project
+This project allows tournament organizers to manage players, create tournaments, assign players, generate matches, record results, and view final rankings.
 
-If you're seeing this, you've probably already done this step. Congrats!
+---
 
-```sh
-# create a new project
-npx sv create my-app
+## Tech Stack
+
+### Frontend
+- SvelteKit
+- Svelte 5
+- Tailwind CSS
+
+### Backend
+- SvelteKit Server Routes
+- Drizzle ORM
+
+### Database
+- PostgreSQL
+
+### Tools
+- Node.js
+- npm
+- Git
+
+---
+
+# Features Implemented
+
+## 1. Player Management
+
+- Create new players
+- View all players
+- Update player details
+- Delete players
+- Store player information in PostgreSQL database
+
+Player details include:
+- Name
+- Email
+- Rating
+
+---
+
+## 2. Tournament Management
+
+- Create tournaments
+- View tournaments
+- Update tournament details
+- Delete tournaments
+- Store tournament information in PostgreSQL database
+
+Tournament details include:
+- Tournament name
+- Location
+- Start date
+
+---
+
+## 3. Add Players To Tournament
+
+- Assign players to tournaments
+- Maintain tournament-player relationships
+- Store player participation data
+
+---
+
+## 4. Match System
+
+- Generate random matches for tournament players
+- Randomly pair players
+- Randomly select match winners
+- Store match results in database
+
+---
+
+## 5. Ranking System
+
+- Calculate player rankings based on match wins
+- Display final top 3 rankings:
+
+1. First Place
+2. Second Place
+3. Third Place
+
+---
+
+# Project Setup
+
+## Prerequisites
+
+Make sure you have installed:
+
+- Node.js
+- PostgreSQL
+
+Check versions:
+
+```bash
+node -v
 ```
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@0.16.3 create --template minimal --no-types --add prettier eslint tailwindcss="plugins:none" drizzle="database:postgresql+postgresql:postgres.js+docker:no" --install npm chess-tournament-system
+```bash
+npm -v
 ```
 
-## Developing
+---
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+# Installation
 
-```sh
+Clone the repository:
+
+```bash
+git clone <repository-url>
+```
+
+Go inside project folder:
+
+```bash
+cd chess-tournament-system
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+---
+
+# Database Setup
+
+Create a PostgreSQL database.
+
+Example:
+
+```
+chess_tournament
+```
+
+Create `.env` file in the project root:
+
+```env
+DATABASE_URL="postgres://username:password@localhost:5432/chess_tournament"
+```
+
+Replace:
+
+- username
+- password
+- database name
+
+with your PostgreSQL credentials.
+
+---
+
+# Database Migration
+
+Push database schema:
+
+```bash
+npm run db:push
+```
+
+This will create required tables:
+
+- players
+- tournaments
+- tournament_players
+- matches
+
+---
+
+# Run Application
+
+Start development server:
+
+```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Open:
 
-To create a production version of your app:
-
-```sh
-npm run build
+```
+http://localhost:5173
 ```
 
-You can preview the production build with `npm run preview`.
+---
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+# Available Routes
+
+## Players
+
+```
+/players
+```
+
+Manage players.
+
+---
+
+## Tournaments
+
+```
+/tournaments
+```
+
+Manage tournaments.
+
+---
+
+## Add Players
+
+```
+/tournament-players
+```
+
+Assign players to tournaments.
+
+---
+
+## Matches
+
+```
+/matches
+```
+
+Generate tournament matches and store results.
+
+---
+
+## Rankings
+
+```
+/leaderboard
+```
+
+View final rankings.
+
+---
+
+# Database Tables
+
+## Players
+
+Stores player information.
+
+Fields:
+
+- id
+- name
+- email
+- rating
+- created_at
+
+
+## Tournaments
+
+Stores tournament information.
+
+Fields:
+
+- id
+- name
+- location
+- start_date
+- created_at
+
+
+## Tournament Players
+
+Stores player participation.
+
+Fields:
+
+- tournament_id
+- player_id
+
+
+## Matches
+
+Stores match results.
+
+Fields:
+
+- id
+- tournament_id
+- player1_id
+- player2_id
+- winner_id
+- round
+- played_at
+
+
+---
+
+# Environment Variables
+
+Do not commit `.env` file.
+
+Use:
+
+```
+.env.example
+```
+
+for sharing required environment variables.
+
+---
+
