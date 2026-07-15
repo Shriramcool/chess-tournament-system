@@ -8,7 +8,7 @@ This project allows tournament organizers to manage players, create tournaments,
 
 ## Live Demo
 
-🔗 chess-tournament-system-2xop62n41-shriram-s-projects.vercel.app
+🔗 **[View Live Demo](https://chess-tournament-system-2xop62n41-shriram-s-projects.vercel.app)**
 
 ## Tech Stack
 
